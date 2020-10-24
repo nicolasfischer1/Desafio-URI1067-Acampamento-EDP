@@ -1,9 +1,9 @@
 
-#__Desafio da disciplina de EDP - tarefa avaliativa.__\n
+#Desafio da disciplina de EDP - tarefa avaliativa.\n
 
 Profas Daniela {Bagatini, Saccol}.\n
 
-##__Resolução do exercício 1167 - "Acampamento de férias" (do Uri Online Judge).__\n
+##Resolução do exercício 1167 - "Acampamento de férias" (do Uri Online Judge).\n
 
 *Iniciado em:* 23/10/2020.\n
 
