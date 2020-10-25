@@ -47,20 +47,20 @@ int main(void)
 
     while (1)
     {
-        int qtd;
+        int qtd; // Número de crianças no circulo
         scanf("%d", &qtd);
         fflush(stdin);
 
         if (qtd != 0)
         {
             CRIANCA *l = NULL; // Lista temporária
-            for (int j = 0; j < qtd; j++)
+            for (int j = 0; j < qtd; j++) // Percorre a lista
             {
-                CRIANCA *no = entrada_dados();
-                inclui_fim(&l, no);
+                CRIANCA *no = entrada_dados(); //Analisa os dados inseridos
+                inclui_fim(&l, no); // Inclui no fim da lista temporária
             }
-            vencedor(&l, qtd);
-            inclui_fim(&vencedores, l);
+            vencedor(&l, qtd); // Volta para a lista principal
+            inclui_fim(&vencedores, l); // Inclui no fim da lista principal
         }
 
         else
@@ -76,10 +76,10 @@ int main(void)
 CRIANCA *entrada_dados(void)
 {
     CRIANCA *crianca = (CRIANCA *)malloc(sizeof(CRIANCA)); // Aloca memória
-    scanf("%s %d", &crianca->dados.nome, &crianca->dados.valor);
-    fflush(stdin);
-    crianca->ant = crianca;
-    crianca->prox = crianca;
+    scanf("%s %d", &crianca->dados.nome, &crianca->dados.valor); // Atribui valores inseridos
+    fflush(stdin); // Limpa o teclado
+    crianca->ant = crianca; // Ponteiro aponta para o lado horário
+    crianca->prox = crianca; // Ponteiro aponta para o lado anti-horário
     return crianca;
 }
 
@@ -117,32 +117,32 @@ void exclui(CRIANCA **l, CRIANCA *aux)
         aux->ant->prox = aux->prox;
         aux->prox->ant = aux->ant;
     }
-    free(aux);
+    free(aux); // Libera o valor contido no ponteiro aux
 }
 
-void vencedor(CRIANCA **l, int qtd)
+void vencedor(CRIANCA **l, int qtd) //funcao para descobrir o vencedor
 {
 
-    int valor = (*l)->dados.valor;
+    int valor = (*l)->dados.valor; // Atribui os valores inseridos no início
 
-    CRIANCA *eliminada = ((*l)->dados.valor % 2 == 0) ? ((*l)->ant) : ((*l)->prox);
+    CRIANCA *eliminada = ((*l)->dados.valor % 2 == 0) ? ((*l)->ant) : ((*l)->prox); // Descobre para qual sentido a lista deve correr (horário/anti-horário)
 
-    for (int i = 0; i < (qtd - 1); i++)
+    for (int i = 0; i < (qtd - 1); i++) // Percorre a lista
     {
 
-        if ((valor % 2) == 0)
+        if ((valor % 2) == 0) // Se o número do primeiro a entrar na fila for PAR
         {
             for (int j = 0; j < (valor - 1); j++)
-                eliminada = eliminada->ant;
+                eliminada = eliminada->ant; // Ponteiro aponta para ant
         }
 
-        else
+        else // Se o número do primeiro a entrar na fila for IMPAR
         {
             for (int k = 0; k < (valor - 1); k++)
-                eliminada = eliminada->prox;
+                eliminada = eliminada->prox; // Ponteiro aponta para prox
         }
 
-        CRIANCA *aux = ((eliminada->dados.valor % 2) == 0) ? (eliminada->ant) : (eliminada->prox);
+        CRIANCA *aux = ((eliminada->dados.valor % 2) == 0) ? (eliminada->ant) : (eliminada->prox); // Ponteiro aux
         valor = eliminada->dados.valor;
         exclui(l, eliminada);
         eliminada = aux;

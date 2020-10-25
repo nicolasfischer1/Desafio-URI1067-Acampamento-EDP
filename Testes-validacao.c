@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
+#include "Acamp-ferias-1167.h"
 
 
 void main ()
