@@ -106,7 +106,7 @@ void exclui(CRIANCA **l, CRIANCA *aux)
     if (aux == (*l)) // Se for o primeiro elemento da lista a ser excluido
     {
 
-        (*l)->prox->ant = (*l)->ant;
+        (*l)->prox->ant = (*l)->ant; 
         (*l)->ant->prox = (*l)->prox;
         *l = (*l)->prox;
     }
@@ -114,7 +114,7 @@ void exclui(CRIANCA **l, CRIANCA *aux)
     else // Caso o elemento a ser excluido não seja o primeiro
     {
         //  Manipulação dos ponteiros
-        aux->ant->prox = aux->prox;
+        aux->ant->prox = aux->prox; 
         aux->prox->ant = aux->ant;
     }
     free(aux); // Libera o valor contido no ponteiro aux
@@ -143,9 +143,9 @@ void vencedor(CRIANCA **l, int qtd) //funcao para descobrir o vencedor
         }
 
         CRIANCA *aux = ((eliminada->dados.valor % 2) == 0) ? (eliminada->ant) : (eliminada->prox); // Ponteiro aux
-        valor = eliminada->dados.valor;
-        exclui(l, eliminada);
-        eliminada = aux;
+        valor = eliminada->dados.valor; // Variável recebe o valor do ponteiro eliminada
+        exclui(l, eliminada); // Váriavel exclui da lista o participante
+        eliminada = aux; // Varíavel eliminada fica com valor nulo para dar continuidade
     }
 }
 
@@ -155,8 +155,8 @@ void imprime_lista(CRIANCA *aux)
     CRIANCA *p = aux; // Ponteiro auxiliar para percorrer a lista
     do
     {
-        printf("Vencedor(a): %s\n", p->dados.nome);
-        p = p->prox;
+        printf("Vencedor(a): %s\n", p->dados.nome); // Imprime o vencedor
+        p = p->prox; // Segue a lista
 
     } while (p != aux);
 }
